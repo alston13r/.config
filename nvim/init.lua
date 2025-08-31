@@ -25,7 +25,10 @@ vim.pack.add({
     { src = 'https://github.com/rmagatti/auto-session' },
 })
 
-require 'oil'.setup()
+require 'oil'.setup {
+    view_options = { show_hidden = true }
+}
+
 require 'mini.pick'.setup()
 require 'mason'.setup()
 
