@@ -1,2 +1,14 @@
 htop/
 nvimAncient/
+geary/
+evolution/
+dconf/
+enchant/
+pulse/
+gtk-3.0/
+user-dirs.dirs
+user-dirs.locale
+gnome-initial-setup-done
+.gsd-keyboard.settings-ported
+background
+mimeapps.list
