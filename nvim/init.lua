@@ -50,9 +50,6 @@ vim.lsp.enable({
     'lua_ls',
     'clangd',
     'bashls',
-    -- 'ts_ls',
-    -- 'typescript-language-server',
-    -- 'tsserver',
     'custom-ts-server',
     'nil_ls',
 })
