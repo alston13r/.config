@@ -7,11 +7,11 @@ vim.o.signcolumn = 'yes'
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.swapfile = false
+vim.o.clipboard = 'unnamedplus'
+vim.o.completeopt = 'menuone,noselect'
 
 vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
--- vim.keymap.set('n', '<leader>w', ':write<CR>')
--- vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>nh', ':noh<CR>')
 
 vim.pack.add({
@@ -19,10 +19,42 @@ vim.pack.add({
     { src = 'https://github.com/stevearc/oil.nvim' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = 'https://github.com/nvim-mini/mini.pick' },
-    { src = "https://github.com/mason-org/mason.nvim" },
+    { src = 'https://github.com/mason-org/mason.nvim' },
+    { src = 'https://github.com/williamboman/mason-lspconfig.nvim' },
     { src = 'https://github.com/nvim-lualine/lualine.nvim' },
     { src = 'https://github.com/akinsho/bufferline.nvim' },
     { src = 'https://github.com/rmagatti/auto-session' },
+    { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
+})
+
+require 'nvim-web-devicons'.setup()
+require 'mason'.setup()
+
+require 'mason-lspconfig'.setup {
+    automatic_installation = true,
+    ensure_installed = {
+        'lua_ls',
+        'clangd',
+        'bashls',
+        'ts_ls',
+        'nil_ls',
+    }
+}
+
+vim.lsp.config('custom-ts-server', {
+    cmd = { 'typescript-language-server', '--stdio' },
+    filetypes = { 'javascript', 'typescript' },
+})
+
+vim.lsp.enable({
+    'lua_ls',
+    'clangd',
+    'bashls',
+    -- 'ts_ls',
+    -- 'typescript-language-server',
+    -- 'tsserver',
+    'custom-ts-server',
+    'nil_ls',
 })
 
 require 'oil'.setup {
@@ -30,7 +62,6 @@ require 'oil'.setup {
 }
 
 require 'mini.pick'.setup()
-require 'mason'.setup()
 
 require 'lualine'.setup {
     options = { theme = 'vscode' }
@@ -52,15 +83,15 @@ vim.keymap.set('n', '<leader>ws', '<cmd>AutoSession save<CR>')
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.lsp.enable({
-    'lua_ls',
-    'clangd',
-    'bash-language-server',
-    'typescript-language-server',
-})
 
 vim.keymap.set('n', '<leader>h', ':Pick help<CR>')
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
+
+-- LSP keybinds
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
 vim.cmd('colorscheme vscode')
 
