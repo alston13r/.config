@@ -38,6 +38,7 @@ require 'mason-lspconfig'.setup {
         'bashls',
         'ts_ls',
         'nil_ls',
+        'pylsp',
     }
 }
 
@@ -46,15 +47,21 @@ vim.lsp.config('custom-ts-server', {
     filetypes = { 'javascript', 'typescript' },
 })
 
+vim.lsp.config('custom-py-server', {
+    cmd = { 'pylsp' },
+    filetypes = { 'python' },
+})
+
 vim.lsp.enable({
     'lua_ls',
     'clangd',
     'bashls',
-    -- 'ts_ls',
-    -- 'typescript-language-server',
-    -- 'tsserver',
-    'custom-ts-server',
     'nil_ls',
+
+    -- 'typescript-language-server',
+    'custom-ts-server',
+    -- 'pylsp',
+    'custom-py-server',
 })
 
 require 'oil'.setup {
@@ -92,6 +99,8 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
+
+vim.keymap.set('n', '<leader>er', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
 vim.cmd('colorscheme vscode')
 
