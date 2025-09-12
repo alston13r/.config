@@ -101,7 +101,7 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
-vim.keymap.set('n', '<leader>er', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.keymap.set('n', '<leader>re', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
 vim.cmd('colorscheme vscode')
 
