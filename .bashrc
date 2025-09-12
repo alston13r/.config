@@ -32,8 +32,8 @@ if [ -f ~/.config/.bash_aliases ]; then
     . ~/.config/.bash_aliases
 fi
 
-if [ -f ~/.config/.prompt ]; then
-    . ~/.config/.prompt
+if [ -f ~/.config/.bash_prompt ]; then
+    . ~/.config/.bash_prompt
 else
-    PS1="\n\[\033[1;32m\][\u@\h:\w]\$\[\033[0m\]"
+    PS1="\n\033[1;32m[\u@\h:\w]\$\033[0m"
 fi
