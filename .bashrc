@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -32,9 +32,8 @@ if [ -f ~/.config/.bash_aliases ]; then
     . ~/.config/.bash_aliases
 fi
 
-# function prompt_command {
-#   RET=$?
-#   export PS1=$(~/.bash_prompt.sh $RET)
-# }
-#
-# export PROMPT_COMMAND=prompt_command
+if [ -f ~/.config/.prompt ]; then
+    . ~/.config/.prompt
+else
+    PS1="\n\[\033[1;32m\][\u@\h:\w]\$\[\033[0m\]"
+fi
