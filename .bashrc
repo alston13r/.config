@@ -37,3 +37,7 @@ if [ -f ~/.config/.bash_prompt ]; then
 else
     PS1="\n\033[1;32m[\u@\h:\w]\$\033[0m"
 fi
+
+export C_INCLUDE_PATH=$HOME/.local/include
+export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
