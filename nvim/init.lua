@@ -14,6 +14,8 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>nh', ':noh<CR>')
 
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], {noremap = true})
+
 vim.pack.add({
     { src = 'https://github.com/mofiqul/vscode.nvim' },
     { src = 'https://github.com/stevearc/oil.nvim' },
