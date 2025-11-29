@@ -8,7 +8,7 @@ COL_BLUE="\033[34m"
 COL_MAGENTA="\033[35m"
 COL_CYAN="\033[36m"
 COL_WHITE="\033[37m"
-COL_DEFAULT="\033[39m"
+COL_DEFAULT="\\[\033[39m\\]"
 
 # wrap TEXT COLOR
 function wrap() {
@@ -29,21 +29,24 @@ function wrap() {
 
 # wrap256 TEXT COLOR-ID
 function wrap256() {
-    echo -e "\033[38;5;$2m$1${COL_DEFAULT}"
+    echo "\\[\033[38;5;$2m\\]$1${COL_DEFAULT}"
 }
 
-function promptCommandFn() {
-    # return value
+function promptCommand() {
+
+    # add color to return value
+    local statusColor=255
     local ret=$?
     if [ $ret -eq 0 ]; then
-        PS1_CMD1=$(wrap256 $ret 40) # green
+        statusColor=40 # green
     elif [ $ret -eq 69 ]; then
-        PS1_CMD1=$(wrap256 $ret 129) # purple
+        statusColor=129 # purple ;)
     elif [ $ret -eq 147 ] || [ $ret -eq 148 ]; then
-        PS1_CMD1=$(wrap256 $ret 226) # yellow
+        statusColor=226 # yellow
     else
-        PS1_CMD1=$(wrap256 $ret 196) # red
+        statusColor=196 # red
     fi
+    PS1_CMD1="\\[\033[38;5;${statusColor}m\\]${ret}${COL_DEFAULT}"
 
     # git branch
     local branch="$(git branch --show-current 2>/dev/null)"
@@ -52,16 +55,22 @@ function promptCommandFn() {
     else
         PS1_CMD2=""
     fi
+
 }
 
 
-PROMPT_COMMAND=promptCommandFn
+PROMPT_COMMAND=promptCommand
 
-PRE_PROMPT="\033[0m" # reset all modes
-POST_PROMPT="\033[5 q" # cursor steady bar
+PRE_PROMPT="\\[\033[0m\\]" # reset all modes
+POST_PROMPT="\\[\033[5 q\\]" # cursor steady bar
 
-TIME='$(wrap256 "\t" 49)'
-USER_HOST='$(wrap256 "\u@\h" 175)'
-WORK_DIR='$(wrap256 "\w" 75)'
+TEAL_COLOR="\\[\033[38;5;49m\\]"
+TIME="${TEAL_COLOR}\\t${COL_DEFAULT}"
 
-PS1=${PRE_PROMPT}'┌['${TIME}' '${USER_HOST}' '${WORK_DIR}' ${PS1_CMD1}${PS1_CMD2}]\n└> '${POST_PROMPT}
+PINK_COLOR="\\[\033[38;5;175m\\]"
+USER_HOST="${PINK_COLOR}\\u@\\h${COLOR_DEFAULT}"
+
+LIGHT_BLUE_COLOR="\\[\033[38;5;75m\\]"
+WORK_DIR="${LIGHT_BLUE_COLOR}\\w${COLOR_DEFAULT}"
+
+PS1="${PRE_PROMPT}┌[${TIME} ${USER_HOST} ${WORK_DIR} ${PS1_CMD1}${PS1_CMD2}]\n└> ${POST_PROMPT}"
