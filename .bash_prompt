@@ -16,13 +16,14 @@ function promptCommand() {
     else
         statusColor=196 # red
     fi
-    PS1_CMD1="\\[\033[38;5;${statusColor}m\\]${ret}${COL_DEFAULT}"
+    PS1_CMD1=$(echo -e "\033[38;5;${statusColor}m${ret}\033[39m")
+
 
     # git branch
     local branch="$(git branch --show-current 2>/dev/null)"
     if [ ${#branch} -gt 0 ]; then
         # wrap in yellow, underline
-        PS1_CMD2=" \\[\033[38;5;226m\033[4m\\]${branch}\\[\033[24m\\]${COL_DEFAULT}"
+        PS1_CMD2=$(echo -e " \033[38;5;226m\033[4m${branch}\033[24m\033[39m")
     else
         PS1_CMD2="" # no display
     fi
@@ -40,10 +41,12 @@ TEAL_COLOR="\\[\033[38;5;49m\\]"
 TIME="${TEAL_COLOR}\\t${COL_DEFAULT}"
 
 PINK_COLOR="\\[\033[38;5;175m\\]"
-USER_HOST="${PINK_COLOR}\\u@\\h${COLOR_DEFAULT}"
+USER_HOST="${PINK_COLOR}\\u@\\h${COL_DEFAULT}"
 
 LIGHT_BLUE_COLOR="\\[\033[38;5;75m\\]"
-WORK_DIR="${LIGHT_BLUE_COLOR}\\w${COLOR_DEFAULT}"
+WORK_DIR="${LIGHT_BLUE_COLOR}\\w${COL_DEFAULT}"
+
+RET_VARIABLE='\[\033[38;5;40m\]Green\[\033[0m\]'
 
 
-PS1="${PRE_PROMPT}┌[${TIME} ${USER_HOST} ${WORK_DIR} ${PS1_CMD1}${PS1_CMD2}]\n└> ${POST_PROMPT}"
+PS1="${PRE_PROMPT}┌[${TIME} ${USER_HOST} ${WORK_DIR} \${PS1_CMD1}\${PS1_CMD2}]\n└> ${POST_PROMPT}"
