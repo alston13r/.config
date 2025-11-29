@@ -32,6 +32,7 @@ if [ -f ~/.config/.bash_aliases ]; then
     . ~/.config/.bash_aliases
 fi
 
+# Prompt definition
 if [ -f ~/.config/.bash_prompt ]; then
     . ~/.config/.bash_prompt
 else

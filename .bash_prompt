@@ -32,6 +32,9 @@ function wrap256() {
     echo -e "\033[38;5;$2m$1${COL_DEFAULT}"
 }
 
+PRE_PROMPT="\033[0m" # reset all modes
+POST_PROMPT="\033[5 q" # cursor steady bar
+
 function promptCommandFn() {
     # return value
     local ret=$?
@@ -52,16 +55,13 @@ function promptCommandFn() {
     else
         PS1_CMD2=""
     fi
+
+    local timestamp=$(wrap256 $(date +"%T") 49)
+    local userHost=$(wrap256 "$(whoami)@$(hostname)" 175)
+    local workDir=$(wrap256 ${PWD/*\//} 75)
+
+    echo -en "${PRE_PROMPT}┌[${timestamp} ${userHost} ${workDir} ${PS1_CMD1}${PS1_CMD2}]"
 }
 
-
 PROMPT_COMMAND=promptCommandFn
-
-PRE_PROMPT="\033[0m" # reset all modes
-POST_PROMPT="\033[5 q" # cursor steady bar
-
-TIME='$(wrap256 "\t" 49)'
-USER_HOST='$(wrap256 "\u@\h" 175)'
-WORK_DIR='$(wrap256 "\w" 75)'
-
-PS1=${PRE_PROMPT}'┌['${TIME}' '${USER_HOST}' '${WORK_DIR}' ${PS1_CMD1}${PS1_CMD2}]\n└> '${POST_PROMPT}
+PS1="\n└> ${POST_PROMPT}"
