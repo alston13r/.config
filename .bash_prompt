@@ -51,7 +51,8 @@ function promptCommand() {
     # git branch
     local branch="$(git branch --show-current 2>/dev/null)"
     if [ ${#branch} -gt 0 ]; then
-        PS1_CMD2=" $(wrap256 $branch 226)"
+        PS1_CMD2=" \\[\033[38;5;226m\033[4m\\]${branch}\\[\033[0m\\]"
+        # PS1_CMD2=" $(wrap256 $branch 226)"
     else
         PS1_CMD2=""
     fi
