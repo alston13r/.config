@@ -16,6 +16,8 @@ vim.keymap.set('n', '<leader>nh', ':noh<CR>')
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], {noremap = true})
 
+vim.keymap.set('n', 'fg', '<C-^>', {noremap = true})
+
 vim.pack.add({
     { src = 'https://github.com/mofiqul/vscode.nvim' },
     { src = 'https://github.com/stevearc/oil.nvim' },
