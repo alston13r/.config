@@ -13,30 +13,11 @@ function fish_prompt --description 'Informative prompt'
 
     set -l fish_str '><(((*>'
 
-    set -l branch_color (set_color -u FFFF00)
-    set -l branch (git branch --show-current 2>/dev/null)
-
-    if test -n "$branch"
-
-        # git
-        printf '[%s%s%s] %s%s@%s %s%s %s%s%s %s%s \n%s ' \
-            (set_color 00FFAF) (date "+%H:%M:%S") (set_color normal) \
-            (set_color D787AF) $USER (prompt_hostname) \
-            (set_color 5FAFFF) $PWD \
-            $branch_color $branch (set_color normal) \
-            $pipestatus_string (set_color normal) \
-            $fish_str
-
-    else
-
-        # no git
-        printf '[%s%s%s] %s%s@%s %s%s %s%s \n%s ' \
-            (set_color 00FFAF) (date "+%H:%M:%S") (set_color normal) \
-            (set_color D787AF) $USER (prompt_hostname) \
-            (set_color 5FAFFF) $PWD \
-            $pipestatus_string (set_color normal) \
-            $fish_str
-
-    end
+    printf '[%s%s%s] %s%s@%s %s%s %s%s \n%s ' \
+        (set_color 00FFAF) (date "+%H:%M:%S") (set_color normal) \
+        (set_color D787AF) $USER (prompt_hostname) \
+        (set_color 5FAFFF) (prompt_pwd -d 3 -D 3) \
+        $pipestatus_string (set_color normal) \
+        $fish_str
 
 end
