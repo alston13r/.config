@@ -30,12 +30,11 @@ function fish_prompt --description 'Informative prompt'
     else
 
         # no git
-        printf '[%s%s%s] %s%s@%s %s%s %s%s%s \n%s ' \
+        printf '[%s%s%s] %s%s@%s %s%s %s%s \n%s ' \
             (set_color 00FFAF) (date "+%H:%M:%S") (set_color normal) \
             (set_color D787AF) $USER (prompt_hostname) \
             (set_color 5FAFFF) $PWD \
-            $pipestatus_string \
-            (set_color normal) \
+            $pipestatus_string (set_color normal) \
             $fish_str
 
     end
