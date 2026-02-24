@@ -98,7 +98,7 @@ vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 
 -- LSP keybinds
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
