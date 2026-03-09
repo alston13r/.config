@@ -49,6 +49,7 @@ require 'mason-lspconfig'.setup {
 vim.lsp.config('custom-ts-server', {
     cmd = { 'typescript-language-server', '--stdio' },
     filetypes = { 'javascript', 'typescript' },
+    root_dir = vim.fn.getcwd(),
 })
 
 vim.lsp.config('custom-py-server', {
