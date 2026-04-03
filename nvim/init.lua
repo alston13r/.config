@@ -11,12 +11,17 @@ vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menuone,noselect'
 
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
+vim.keymap.set('n', '<leader>o', function()
+    vim.cmd('update')
+    if vim.bo.filetype == 'lua' then
+        vim.cmd('source %')
+        print('Config reloaded')
+    end
+end)
+
 vim.keymap.set('n', '<leader>nh', ':noh<CR>')
-
-vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], {noremap = true})
-
-vim.keymap.set('n', 'fg', '<C-^>', {noremap = true})
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
+vim.keymap.set('n', 'fg', '<C-^>', { noremap = true })
 
 vim.pack.add({
     { src = 'https://github.com/mofiqul/vscode.nvim' },
@@ -68,13 +73,28 @@ vim.lsp.config('custom-py-server', {
     filetypes = { 'python' },
 })
 
+vim.lsp.config('custom-nix-server', {
+    cmd = { "nixd" },
+
+    root_dir = vim.fn.getcwd(),
+    filetypes = { 'nix', },
+
+    settings = {
+        nixd = {
+            formatting = {
+                command = { "nixpkgs-fmt" },
+            },
+        },
+    },
+})
+
 vim.lsp.enable({
     'lua_ls',
     'clangd',
     'bashls',
     'custom-ts-server',
-    'nixd',
     'custom-py-server',
+    'custom-nix-server',
 })
 
 require 'oil'.setup {
