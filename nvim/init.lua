@@ -29,7 +29,19 @@ vim.pack.add({
     { src = 'https://github.com/akinsho/bufferline.nvim' },
     { src = 'https://github.com/rmagatti/auto-session' },
     { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
+    { src = 'https://github.com/lambdalisue/suda.vim' },
 })
+
+-- suda keybinds
+vim.keymap.set('n', '<leader>sw', ':SudaWrite<CR>')
+
+-- faster tab switching
+vim.keymap.set('n', '<Tab>', ':tabnext<CR>', { noremap = true })
+vim.keymap.set('n', '<S-Tab>', ':tabprev<CR>', { noremap = true })
+
+-- buffer and file picking
+vim.keymap.set('n', '<leader>b', ':Pick buffers<CR>', { desc = 'Pick Buffers' })
+vim.keymap.set('n', '<leader>f', ':Pick files<CR>', { desc = 'Pick Files' })
 
 require 'nvim-web-devicons'.setup()
 require 'mason'.setup()
@@ -41,7 +53,6 @@ require 'mason-lspconfig'.setup {
         'clangd',
         'bashls',
         'ts_ls',
-        'nil_ls',
         'pylsp',
     }
 }
@@ -62,8 +73,7 @@ vim.lsp.enable({
     'clangd',
     'bashls',
     'custom-ts-server',
-    'rnix-lsp',
-    'custom-ts-server',
+    'nixd',
     'custom-py-server',
 })
 
