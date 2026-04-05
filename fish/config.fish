@@ -1,5 +1,4 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
 
     # alias function
     function l
@@ -8,5 +7,12 @@ if status is-interactive
 
     # set text editor
     set -gx EDITOR nvim
+
+    # abbreviations
+    function multicd
+        set -l length (math (string length -- $argv) - 1)
+        echo cd (string repeat -n $length ../)
+    end
+    abbr --add dotdot --regex '^\.\.+$' --function multicd
 
 end
