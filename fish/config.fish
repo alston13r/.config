@@ -15,4 +15,6 @@ if status is-interactive
     end
     abbr --add dotdot --regex '^\.\.+$' --function multicd
 
+    abbr --add ',' 'nvim .'
+
 end
