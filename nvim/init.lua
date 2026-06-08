@@ -43,6 +43,8 @@ vim.keymap.set('n', '<leader>sw', ':SudaWrite<CR>')
 -- faster tab switching
 vim.keymap.set('n', '<Tab>', ':tabnext<CR>', { noremap = true })
 vim.keymap.set('n', '<S-Tab>', ':tabprev<CR>', { noremap = true })
+vim.keymap.set('n', '<C-n>', ':tabnew<CR>', { noremap = true })
+vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true })
 
 -- buffer and file picking
 vim.keymap.set('n', '<leader>b', ':Pick buffers<CR>', { desc = 'Pick Buffers' })
