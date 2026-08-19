@@ -139,6 +139,7 @@ vim.keymap.set('n', '<leader>re', '<cmd>lua vim.diagnostic.open_float()<CR>', op
 vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
 vim.cmd('colorscheme vscode')
+vim.opt.termguicolors = true
 
 vim.cmd [[
 highlight BufferLineFill guibg=#111111
