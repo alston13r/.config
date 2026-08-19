@@ -31,3 +31,4 @@ OpenRGB/
 fish
 nix/
 systemd/
+environment.d/
