@@ -36,10 +36,10 @@
 
     programs.home-manager.enable = true;
 
-    programs.fish.enable = true;
-    xdg.configFile."fish".source = ./fish-config;
+    programs.fish.generateCompletions = false;
 
-    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink /home/alston/nvim-config;
+    xdg.configFile."fish".source = config.lib.file.mkOutOfStoreSymlink "/home/alston/.config/home-manager/fish-config";
+    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/alston/nvim-config";
 
     nix = {
         package = pkgs.nix;
