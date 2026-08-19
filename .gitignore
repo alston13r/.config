@@ -28,7 +28,10 @@ swi-prolog/
 godot/
 ibus/
 OpenRGB/
+
+# symlinks from home-manager
 fish
+nvim
 nix/
 systemd/
 environment.d/

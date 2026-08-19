@@ -8,25 +8,26 @@
 
     home.packages = [
         pkgs.python314
-            pkgs.fish
+        pkgs.fish
 
-            pkgs.nixd
+        pkgs.nixd
 
-            pkgs.gcc16
-            pkgs.gdb
-            pkgs.valgrind
+        pkgs.gcc16
+        pkgs.gdb
+        pkgs.valgrind
+        pkgs.gnumake
 
-            pkgs.wl-clipboard
+        pkgs.wl-clipboard
 
-            pkgs.wget
-            pkgs.git
-            pkgs.curl
-            pkgs.unzip
-            pkgs.nano
-            pkgs.vim
-            pkgs.ngrok
+        pkgs.wget
+        pkgs.git
+        pkgs.curl
+        pkgs.unzip
+        pkgs.nano
+        pkgs.vim
+        pkgs.ngrok
 
-            pkgs.xapp
+        pkgs.xapp
     ];
 
     home.sessionVariables = {
@@ -34,8 +35,11 @@
     };
 
     programs.home-manager.enable = true;
+
     programs.fish.enable = true;
     xdg.configFile."fish".source = ./fish-config;
+
+    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink /home/alston/nvim-config;
 
     nix = {
         package = pkgs.nix;
