@@ -14,7 +14,19 @@
 
             pkgs.gcc16
             pkgs.gdb
+            pkgs.valgrind
 
+            pkgs.wl-clipboard
+
+            pkgs.wget
+            pkgs.git
+            pkgs.curl
+            pkgs.unzip
+            pkgs.nano
+            pkgs.vim
+            pkgs.ngrok
+
+            pkgs.xapp
     ];
 
     home.sessionVariables = {
