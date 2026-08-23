@@ -26,6 +26,8 @@
         pkgs.nano
         pkgs.vim
         pkgs.ngrok
+        pkgs.xxd
+        pkgs.nodejs
 
         pkgs.xapp
     ];
